@@ -41,17 +41,29 @@ class CategoryController {
       res.status(400).json({ message: err.message });
     }
   }
-  static display = async (req, res) => {
-    const { id } = req.params;
+  // static display = async (req, res) => {
+  //   const { id } = req.params;
+  //   try {
+  //     const category = await CategoryModel.findById(id);
+  //     if (category) {
+  //       res.status(200).json(category);
+  //     } else {
+  //       res.status(404).json({ message: 'Category not found' });
+  //     }
+  //   } catch (err) {
+  //     res.status(500).json({ message: err.message });
+  //   }
+  // }
+  static display =async (req,res)=>{
     try {
-      const category = await CategoryModel.findById(id);
-      if (category) {
-        res.status(200).json(category);
-      } else {
-        res.status(404).json({ message: 'Category not found' });
-      }
-    } catch (err) {
-      res.status(500).json({ message: err.message });
+      const data= await 
+      CategoryModel.find()
+      res.status(200).json({
+        success:true,
+        data
+      })
+    } catch (error) {
+     console.log(error) 
     }
   }
   static update = async (req, res) => {
