@@ -11,41 +11,30 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: Number,
+        type: String,
         required: true
     },
     stock: {
-        type: Number,
+        type: String,
         required: true,
         default: 1
     },
     rating: {
-        type: Number,
+        type: String,
         default: 0,
         required: true
     },
-    // images: [   
-    //     {
+   
+    // image: {
     //     public_id: {
     //         type: String,
-    //         // required: true
+    //         required: true
     //     },
     //     url: {
     //         type: String,
-    //         // requiredd: true,
+    //         requiredd: true,
     //     },
-    //     },
-    // ],
-    images: {
-        public_id: {
-            type: String,
-            // required: true
-        },
-        url: {
-            type: String,
-            // requiredd: true,
-        },
-    },                            
+    //   },                          
     category: {
         type: String,
         required: true

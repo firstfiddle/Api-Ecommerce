@@ -56,13 +56,14 @@ class ProductController{
     }
     static createProduct = async(req,res) => {
         try{
-            console.log(req.body)
-            console.log(req.files)
-            const file = req.files.images
-            const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
-                folder : 'userImage'
-            })
-
+             console.log(req.body)
+            
+            // const file = req.files.image
+            // //console.log(file)
+            // const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
+            //     folder : 'userImage'
+            // })
+            //  console.log(myCloud)
             const {name, description, price, stock, rating, category} = req.body
             const data = new productModel({
                 name: name,
@@ -71,10 +72,10 @@ class ProductController{
                 stock: stock,
                 rating: rating,
                 category: category,
-                images: {
-                    public_id: myCloud.public_id,
-                    url: myCloud.secure_url,
-                },
+                // image: {
+                //     public_id: myCloud.public_id,
+                //     url: myCloud.secure_url,
+                // },
             })
             const insertedData = await data.save()
             // console.log(insertedData);
@@ -82,7 +83,7 @@ class ProductController{
             .status(201)
             .json({ status: "success", message: "Product added Successfully 😃🍻",insertedData});
         }catch(err){
-            res.send(err)
+            res.status(400).json({ message: err.message });
         }
     }
     static updateProduct = async(req,res) => {
