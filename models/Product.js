@@ -25,16 +25,16 @@ const productSchema = new mongoose.Schema({
         required: true
     },
    
-    // image: {
-    //     public_id: {
-    //         type: String,
-    //         required: true
-    //     },
-    //     url: {
-    //         type: String,
-    //         requiredd: true,
-    //     },
-    //   },                          
+    image: {
+        public_id: {
+            type: String,
+            required: true
+        },
+        url: {
+            type: String,
+            requiredd: true,
+        },
+      },                          
     category: {
         type: String,
         required: true

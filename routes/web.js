@@ -4,7 +4,7 @@ const router = express.Router()
 const{ChangeUserAuth} = require('../middleware/auth')
 const ProductController = require('../controllers/ProductController')
 const CategoryController = require('../controllers/CategoryController')
-
+const SliderController =require('../controllers/SliderController')
 
 
 //usercontroller
@@ -33,6 +33,12 @@ router.get('/getCategory/:id', CategoryController.display);
 router.put('/updateCategory/:id', CategoryController.update);
 router.delete('/deleteCategory/:id', CategoryController.delete);
 
+// slider controller
+router.get('/slider', SliderController.display)
+router.post('/insert', SliderController.insert)
+router.get('/viewSlider/:id' , SliderController.view);
+router.post('/updateSlider/:id' , SliderController.update);
+router.delete('/deleteSlider/:id' , SliderController.delete);
 
 
 module.exports = router

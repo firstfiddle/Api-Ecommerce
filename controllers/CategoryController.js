@@ -26,7 +26,6 @@ class CategoryController {
       const imageUpload = await cloudinary.uploader.upload(file.tempFilePath , {
           folder: 'projectAPI'
       })
-
       const { name } = req.body;
       const newCategory = new CategoryModel({
         name:name,

@@ -58,11 +58,11 @@ class ProductController{
         try{
              console.log(req.body)
             
-            // const file = req.files.image
-            // //console.log(file)
-            // const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
-            //     folder : 'userImage'
-            // })
+            const file = req.files.image
+            console.log(file)
+            const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
+                folder : 'userImage'
+            })
             //  console.log(myCloud)
             const {name, description, price, stock, rating, category} = req.body
             const data = new productModel({
@@ -72,10 +72,10 @@ class ProductController{
                 stock: stock,
                 rating: rating,
                 category: category,
-                // image: {
-                //     public_id: myCloud.public_id,
-                //     url: myCloud.secure_url,
-                // },
+                image: {
+                    public_id: myCloud.public_id,
+                    url: myCloud.secure_url,
+                },
             })
             const insertedData = await data.save()
             // console.log(insertedData);
