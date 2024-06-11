@@ -10,17 +10,16 @@ class SliderController {
 
     static display = async (req, res) => {
         
-        try {
-          const slider = await SliderModel.find()
-          if (slider) {
-            res.status(200).json(slider);
-          } else {
-            res.status(404).json({ message: 'Slider not found' });
-          }
-        } catch (err) {
-          res.status(500).json({ message: err.message });
+        try{
+            const slider = await SliderModel.find()
+            res.status(200).json({
+                success: true,
+                slider
+            })
+        }catch(err){
+            res.send(err)
         }
-      }
+    }
 
       static insert = async (req, res) => {
         try {
