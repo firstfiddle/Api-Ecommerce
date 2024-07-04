@@ -13,7 +13,7 @@ const categorySchema = new mongoose.Schema({
     },
     url: {
         type: String,
-        requiredd: true,
+        required: true,
     },
   },
   createdAt: {
