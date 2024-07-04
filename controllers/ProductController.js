@@ -56,12 +56,10 @@ class ProductController{
     }
     static createProduct = async(req,res) => {
         try{
-             console.log(req.body)
-            
+              
             const file = req.files.image
-            console.log(file)
-            const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
-                folder : 'userImage'
+            const myCloud = await cloudinary.uploader.upload(file.tempFilePath , {
+                folder: 'projectAPI'
             })
             //  console.log(myCloud)
             const {name, description, price, stock, rating, category} = req.body
