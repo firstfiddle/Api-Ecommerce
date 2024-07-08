@@ -1,19 +1,20 @@
 const productModel = require('../models/Product')
 const cloudinary = require('cloudinary').v2;
+
 cloudinary.config({
     cloud_name: 'durbsc1w3',
     api_key: '212474534226764',
     api_secret: 'mqEOx-aQoMKES4-wRCdP9KHTl8M',
-   
-});
+     
+  });
 class ProductController{
 
     static getAllProducts = async(req,res) => {
         try{
-            const allProducts = await productModel.find()
+            const products = await productModel.find()
             res.status(200).json({
                 success: true,
-                allProducts
+                products
             })
         }catch(err){
             res.send(err)
@@ -54,16 +55,17 @@ class ProductController{
             res.send(err)
         }
     }
+
     static createProduct = async(req,res) => {
         try{
-             console.log(req.body)
-            
-            const file = req.files.image
-            console.log(file)
+            console.log(req.body)
+            console.log(req.files.images)
+            const file = req.files.images
+             
             const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
                 folder : 'userImage'
             })
-            //  console.log(myCloud)
+
             const {name, description, price, stock, rating, category} = req.body
             const data = new productModel({
                 name: name,
@@ -72,7 +74,7 @@ class ProductController{
                 stock: stock,
                 rating: rating,
                 category: category,
-                image: {
+                images: {
                     public_id: myCloud.public_id,
                     url: myCloud.secure_url,
                 },
@@ -83,18 +85,25 @@ class ProductController{
             .status(201)
             .json({ status: "success", message: "Product added Successfully 😃🍻",insertedData});
         }catch(err){
-            res.status(400).json({ message: err.message });
-        }
-    }
-    static updateProduct = async(req,res) => {
-        try{
-            
-        }catch(err){
             res.send(err)
         }
     }
-}
 
+   static updateProduct = async(req,res) => {
+        const { id } = req.params;
+        try {
+            const updatedProduct = await productModel.findByIdAndUpdate(id, req.body, { new: true });
+            if (updatedProduct) {
+              res.status(200).json(updatedProduct);
+            } else {
+              res.status(404).json({ message: 'Product not found' });
+            }
+          } catch (err) {
+            res.status(400).json({ message: err.message });
+          }
+    }
+
+}
 
 
 module.exports = ProductController
