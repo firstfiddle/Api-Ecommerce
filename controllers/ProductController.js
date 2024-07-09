@@ -72,11 +72,12 @@ class ProductController{
                 price: price,
                 stock: stock,
                 rating: rating,
-                category: category,
                 images: {
                     public_id: myCloud.public_id,
                     url: myCloud.secure_url,
                 },
+                category: category
+               
             })
             const insertedData = await data.save()
             // console.log(insertedData);
