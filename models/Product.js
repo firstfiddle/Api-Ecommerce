@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
 
 const productSchema = new mongoose.Schema({
     name: {
@@ -24,14 +25,15 @@ const productSchema = new mongoose.Schema({
         default: 0,
         required: true
     },
+ 
     images: {
         public_id: {
             type: String,
-             required: true
+            // required: true
         },
         url: {
             type: String,
-             required: true,
+            // requiredd: true,
         },
     },                            
     category: {

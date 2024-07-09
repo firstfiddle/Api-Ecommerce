@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 
 
 const ConnectDb=()=>{
-    return mongoose.connect(process.env.livedb)
+    return mongoose.connect(process.env.Local_URl)
 
     .then(()=>{
         console.log('connected successfully')

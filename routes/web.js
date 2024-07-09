@@ -19,7 +19,7 @@ router.get('/me', ChangeUserAuth, UserController.getUserDetail)
 router.get('/admin/deleteUser/:id', UserController.deleteUser)
 
 
-// //PRODUCTCONTROLLER
+ //PRODUCTCONTROLLER
 router.get('/products', ProductController.getAllProducts)
 router.get('/getProductDetail/:id', ProductController.getProductDetail)
 router.get('/product/getAdminProduct', ProductController.getAdminProduct)

@@ -1,12 +1,12 @@
 const productModel = require('../models/Product')
-const cloudinary = require('cloudinary').v2;
-
+const cloudinary = require('cloudinary');
 cloudinary.config({
     cloud_name: 'durbsc1w3',
     api_key: '212474534226764',
     api_secret: 'mqEOx-aQoMKES4-wRCdP9KHTl8M',
      
   });
+
 class ProductController{
 
     static getAllProducts = async(req,res) => {
@@ -59,9 +59,8 @@ class ProductController{
     static createProduct = async(req,res) => {
         try{
             console.log(req.body)
-            console.log(req.files.images)
+            console.log(req.files)
             const file = req.files.images
-             
             const myCloud = await cloudinary.uploader.upload(file.tempFilePath,{
                 folder : 'userImage'
             })
